@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vietnam AgroHub — Vietnamese Agriculture, Connected to the World</title>
+  <meta name="description" content="Vietnam AgroHub is an agricultural intelligence and B2B sourcing platform. Chuyên đóng gói bao bì và xuất khẩu hàng hóa chất lượng từ Việt Nam: fresh coconuts, coconut water, tropical fruits, coffee, and spices.">
+  
+  <!-- GOOGLE FONTS (Playfair Display for Headings, Be Vietnam Pro for Body/UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       DESIGN SYSTEM & COLOR SYSTEM
+       Navy: #082B45 | Forest Green: #185E4A 
+       Leaf Green: #5A9B5C | Warm Beige: #F6F2E9
+       Earth Brown: #8B6B47 | White: #FFFFFF
+       ========================================== */
+    :root {
+      --navy: #082B45;
+      --forest-green: #185E4A;
+      --forest-dark: #124738;
+      --leaf-green: #5A9B5C;
+      --warm-beige: #F6F2E9;
+      --earth-brown: #8B6B47;
+      --sand: #DCC9A2;
+      --light-gray: #EEF2F2;
+      --border-subtle: #E2DDD5;
+      --white: #FFFFFF;
+      --text-dark: #082B45;
+      --text-body: #3D4852;
+      --text-muted: #64748B;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+      --shadow-subtle: 0 4px 20px rgba(8, 43, 69, 0.06);
+      --shadow-hover: 0 10px 30px rgba(8, 43, 69, 0.12);
+      --container-max: 1280px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background-color: var(--warm-beige); color: var(--text-body); line-height: 1.65; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; transition: all 0.2s ease; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container { max-width: var(--container-max); margin: 0 auto; padding: 0 24px; }
+    .serif-heading { font-family: var(--font-serif); color: var(--navy); font-weight: 600; line-height: 1.2; }
+    .section-label { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--forest-green); margin-bottom: 12px; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 26px; border-radius: 9999px; font-weight: 600; font-size: 15px; transition: all 0.25s ease; min-height: 46px; }
+    .btn-primary { background-color: var(--forest-green); color: var(--white); box-shadow: 0 4px 14px rgba(24, 94, 74, 0.25); }
+    .btn-primary:hover { background-color: var(--forest-dark); transform: translateY(-2px); }
+    .btn-secondary { background-color: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+    .btn-secondary:hover { background-color: var(--navy); color: var(--white); }
+
+    /* TOP NOTICE BAR */
+    .top-notice-bar { background-color: var(--navy); color: rgba(255, 255, 255, 0.85); font-size: 13px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .top-notice-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .top-contact-links { display: flex; gap: 18px; }
+    .top-contact-links a { color: var(--sand); font-weight: 500; }
+    .top-contact-links a:hover { color: var(--white); text-decoration: underline; }
+
+    /* HEADER */
+    .site-header { background-color: var(--white); border-bottom: 1px solid var(--border-subtle); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-subtle); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+    .brand-logo-wrap { display: flex; align-items: center; gap: 12px; }
+    .logo-leaf-icon { width: 44px; height: 44px; border-radius: 50%; background: #E8F2EC; color: var(--forest-green); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .brand-title { font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: var(--navy); display: block; line-height: 1.1; }
+    .brand-tagline-sub { font-size: 11px; color: var(--text-muted); display: block; letter-spacing: 0.2px; }
+    .main-navigation { display: flex; gap: 26px; }
+    .nav-link { font-size: 15px; font-weight: 500; color: var(--text-dark); position: relative; padding: 6px 0; }
+    .nav-link:hover, .nav-link.active { color: var(--forest-green); }
+    .header-action-group { display: flex; align-items: center; gap: 16px; }
+
+    /* HERO */
+    .hero-section { padding: 60px 0 80px; background: radial-gradient(circle at 10% 20%, rgba(220, 201, 162, 0.18) 0%, rgba(246, 242, 233, 1) 90%); }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
+    .hero-badge-tag { display: inline-block; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--forest-green); margin-bottom: 16px; }
+    .hero-title { font-family: var(--font-serif); font-size: clamp(38px, 5vw, 60px); color: var(--navy); line-height: 1.1; margin-bottom: 20px; }
+    .hero-title span { color: var(--forest-green); font-style: italic; }
+    .hero-desc { font-size: 18px; color: var(--text-body); max-width: 540px; margin-bottom: 30px; }
+
+    /* SEARCH */
+    .hero-search-wrapper { position: relative; max-width: 540px; margin-bottom: 18px; }
+    .hero-search-input { width: 100%; height: 56px; border-radius: 9999px; border: 1.5px solid var(--border-subtle); background: var(--white); padding: 0 60px 0 24px; font-size: 16px; color: var(--text-dark); box-shadow: 0 4px 16px rgba(8, 43, 69, 0.05); outline: none; }
+    .hero-search-input:focus { border-color: var(--forest-green); box-shadow: 0 0 0 3px rgba(24, 94, 74, 0.15); }
+    .hero-search-btn { position: absolute; right: 8px; top: 8px; width: 40px; height: 40px; border-radius: 50%; background: var(--forest-green); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .popular-searches { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; }
+    .popular-label { color: var(--text-muted); font-weight: 500; }
+    .popular-tag { background: #EAE5D9; padding: 4px 12px; border-radius: 9999px; color: var(--text-dark); transition: all 0.2s; font-size: 13px; }
+    .popular-tag:hover { background: var(--navy); color: var(--white); }
+
+    /* HERO CARD */
+    .hero-visual-card { border-radius: 24px; overflow: hidden; position: relative; box-shadow: var(--shadow-hover); height: 440px; }
+    .hero-origin-badge { position: absolute; bottom: 20px; left: 20px; background: rgba(8, 43, 69, 0.92); backdrop-filter: blur(8px); padding: 14px 20px; border-radius: 14px; color: var(--white); display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255, 255, 255, 0.15); }
+
+    /* CATEGORIES */
+    .category-strip { display: flex; gap: 16px; overflow-x: auto; padding: 20px 0 40px; scrollbar-width: none; }
+    .cat-item { flex: 0 0 140px; background: var(--white); border-radius: 16px; padding: 16px 12px; text-align: center; border: 1px solid var(--border-subtle); transition: all 0.2s; }
+    .cat-item:hover, .cat-item.active { border-color: var(--forest-green); transform: translateY(-4px); box-shadow: var(--shadow-subtle); }
+    .cat-icon { font-size: 32px; margin-bottom: 8px; }
+    .cat-name { font-weight: 600; font-size: 14px; color: var(--navy); }
+
+    /* ORIGINS SECTION */
+    .origins-section { padding: 80px 0; background: var(--white); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+    .origins-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .origins-card-visual { background: linear-gradient(135deg, #185E4A, #082B45); border-radius: 24px; padding: 40px; color: var(--white); height: 380px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; }
+
+    /* SIGNATURE PRODUCTS */
+    .products-section { padding: 80px 0; }
+    .section-head-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; }
+    .product-card { background: var(--white); border-radius: 18px; border: 1px solid var(--border-subtle); overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--sand); }
+    .product-thumb { height: 180px; background: #E8ECEB; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 60px; position: relative; }
+    .product-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .product-title { font-family: var(--font-serif); font-size: 19px; color: var(--navy); font-weight: 700; margin-bottom: 6px; }
+    .product-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; flex: 1; }
+    .product-meta-row { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #F0ECE4; padding-top: 14px; }
+    .product-action-link { font-size: 13px; font-weight: 600; color: var(--forest-green); display: flex; align-items: center; gap: 4px; }
+
+    /* PACKAGING MODULE */
+    .packaging-section { padding: 80px 0; background: #F1ECE1; }
+    .pack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+    .pack-card { background: var(--white); border-radius: 16px; padding: 30px; border: 1px solid var(--border-subtle); }
+    .pack-card h4 { font-family: var(--font-serif); font-size: 20px; color: var(--navy); margin-bottom: 10px; }
+
+    /* QUALITY TIMELINE */
+    .quality-section { padding: 80px 0; background: var(--white); }
+    .quality-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 40px; }
+    .timeline-step { background: var(--warm-beige); border-radius: 12px; padding: 20px; border-left: 3px solid var(--forest-green); }
+    .step-num { font-size: 12px; font-weight: 700; color: var(--forest-green); text-transform: uppercase; margin-bottom: 6px; }
+    .step-title { font-weight: 600; font-size: 15px; color: var(--navy); margin-bottom: 4px; }
+    .step-desc { font-size: 13px; color: var(--text-muted); }
+
+    /* QUOTE CALCULATOR */
+    .quote-section { padding: 90px 0; background: var(--navy); color: var(--white); }
+    .quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .quote-form-card { background: var(--white); border-radius: 20px; padding: 36px; color: var(--text-dark); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--navy); }
+    .form-control { width: 100%; height: 46px; border: 1.5px solid #D5CEBF; border-radius: 8px; padding: 0 14px; font-size: 15px; font-family: inherit; }
+    .form-control:focus { outline: none; border-color: var(--forest-green); }
+
+    /* MODAL DRAWER */
+    .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(8, 43, 69, 0.7); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-box { background: var(--white); max-width: 650px; width: 100%; border-radius: 20px; padding: 36px; position: relative; max-height: 90vh; overflow-y: auto; }
+    .modal-close-btn { position: absolute; top: 20px; right: 20px; font-size: 24px; color: var(--text-muted); }
+
+    /* FOOTER */
+    .site-footer { background: #051C2D; color: rgba(255, 255, 255, 0.7); padding: 70px 0 30px; font-size: 14px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 50px; }
+    .footer-title { color: var(--white); font-family: var(--font-serif); font-size: 18px; margin-bottom: 18px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a:hover { color: var(--sand); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; font-size: 13px; }
+
+    @media (max-width: 992px) {
+      .hero-grid, .origins-grid, .quote-grid, .footer-grid { grid-template-columns: 1fr; }
+      .main-navigation { display: none; }
+      .hero-visual-card { height: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NOTICE BAR -->
+  <aside class="top-notice-bar">
+    <div class="container top-notice-content">
+      <div>
+        <span>Hotline / WhatsApp: <strong>+84 (0) 909 888 666</strong></span>
+        <span style="margin: 0 10px; opacity: 0.4;">|</span>
+        <span>Email: <strong>info@vietnamagrohub.com</strong></span>
+      </div>
+      <div class="top-contact-links">
+        <a href="mailto:info@vietnamagrohub.com?subject=B2B%20Sourcing%20Inquiry%20-%20Vietnam%20AgroHub">Contact via Gmail</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Connect on Facebook</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo-wrap">
+        <div class="logo-leaf-icon">🍃</div>
+        <div>
+          <span class="brand-title">Vietnam AgroHub</span>
+          <span class="brand-tagline-sub">Vietnamese Agriculture, Connected to the World.</span>
+        </div>
+      </a>
+
+      <nav class="main-navigation">
+        <a href="#featured-products" class="nav-link active">Products</a>
+        <a href="#packaging" class="nav-link">Packaging</a>
+        <a href="#quality" class="nav-link">Quality</a>
+        <a href="#export" class="nav-link">Export</a>
+        <a href="#origins" class="nav-link">Regions</a>
+        <a href="#request-quote" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-action-group">
+        <a href="#request-quote" class="btn btn-primary">Request a Quote &rarr;</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-badge-tag">Premium Vietnamese Agriculture</span>
+        <h1 class="hero-title">
+          Pure Nature,<br>
+          <span>Global Opportunities</span>
+        </h1>
+        <p class="hero-desc">
+          Discover Vietnam's high-quality agricultural products, from fertile lands to global markets. Chuyên đóng gói bao bì và xuất khẩu hàng hóa chất lượng cao từ Việt Nam.
+        </p>
+
+        <!-- SEARCH -->
+        <div class="hero-search-wrapper">
+          <input 
+            type="text" 
+            id="global-search-input"
+            class="hero-search-input" 
+            placeholder="What agricultural product are you looking for?"
+            oninput="handleSearch(this.value)"
+          >
+          <button class="hero-search-btn">🔍</button>
+        </div>
+
+        <!-- POPULAR -->
+        <div class="popular-searches">
+          <span class="popular-label">Popular:</span>
+          <button class="popular-tag" onclick="openSpecModal('fresh-coconut')">Fresh Coconut</button>
+          <button class="popular-tag" onclick="openSpecModal('coconut-water')">Coconut Water</button>
+          <button class="popular-tag" onclick="openSpecModal('coconut-milk')">Coconut Milk</button>
+          <button class="popular-tag" onclick="openSpecModal('coconut-oil')">Coconut Oil</button>
+          <button class="popular-tag" onclick="location.href='#origins'">Ben Tre</button>
+        </div>
+
+        <div style="display: flex; gap: 16px; margin-top: 30px;">
+          <a href="#request-quote" class="btn btn-primary">Request a Quote &rarr;</a>
+          <a href="#featured-products" class="btn btn-secondary">Explore Products</a>
+        </div>
+      </div>
+
+      <!-- VISUAL CARD WITH BEN TRE BADGE -->
+      <div class="hero-visual-card">
+        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #185E4A 0%, #082B45 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #FFF; text-align: center; padding: 20px;">
+          <div style="font-size: 80px; margin-bottom: 10px;">🥥</div>
+          <div style="font-family: var(--font-serif); font-size: 26px; font-weight: 700; margin-bottom: 6px;">
+            Ben Tre Fresh Siamese Coconut
+          </div>
+          <p style="font-size: 14px; opacity: 0.85;">
+            Naturally Sweet • Brix ≥ 7.5% • Export Ready Cold-Chain
+          </p>
+        </div>
+        <div class="hero-origin-badge">
+          <div style="font-size: 24px;">📍</div>
+          <div>
+            <div style="font-weight: 700; font-size: 15px;">Ben Tre</div>
+            <div style="font-size: 12px; opacity: 0.8;">The homeland of premium coconuts in Vietnam</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY STRIP -->
+  <section class="container" style="margin-top: -30px; position: relative; z-index: 10;">
+    <div class="category-strip">
+      <div class="cat-item active" onclick="filterCategory('Coconut')">
+        <div class="cat-icon">🥥</div>
+        <div class="cat-name">Coconut</div>
+      </div>
+      <div class="cat-item" onclick="filterCategory('Fruits')">
+        <div class="cat-icon">🐉</div>
+        <div class="cat-name">Fruits</div>
+      </div>
+      <div class="cat-item" onclick="filterCategory('Coffee')">
+        <div class="cat-icon">☕</div>
+        <div class="cat-name">Coffee</div>
+      </div>
+      <div class="cat-item" onclick="filterCategory('Spices')">
+        <div class="cat-icon">🌿</div>
+        <div class="cat-name">Spices</div>
+      </div>
+      <div class="cat-item" onclick="filterCategory('Nuts')">
+        <div class="cat-icon">🥜</div>
+        <div class="cat-name">Nuts</div>
+      </div>
+      <div class="cat-item" onclick="filterCategory('Vegetables')">
+        <div class="cat-icon">🥬</div>
+        <div class="cat-name">Vegetables</div>
+      </div>
+      <div class="cat-item" onclick="filterCategory('Processed')">
+        <div class="cat-icon">📦</div>
+        <div class="cat-name">Processed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORIGINS SECTION -->
+  <section class="origins-section" id="origins">
+    <div class="container origins-grid">
+      <div class="origins-card-visual">
+        <div style="position: absolute; top: 30px; left: 30px; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 9999px; font-size: 12px;">
+          📍 Mekong Delta Alluvial Soil
+        </div>
+        <h3 style="font-family: var(--font-serif); font-size: 28px; margin-bottom: 8px;">The Land of River & Palms</h3>
+        <p style="font-size: 14px; opacity: 0.9;">Ben Tre accounts for over 80% of Vietnam's export coconut yield, enriched by natural tidal waterways.</p>
+      </div>
+
+      <div>
+        <span class="section-label">Our Origins</span>
+        <h2 class="serif-heading" style="font-size: 38px; margin-bottom: 18px;">
+          Rich Lands, Unique Products
+        </h2>
+        <p style="font-size: 16px; margin-bottom: 24px; color: var(--text-body);">
+          From the fertile Mekong Delta to diverse microclimates across Vietnam, our agricultural products reflect the richness of the land, the dedication of farmers, and standard quality trusted by international importers.
+        </p>
+        <div style="display: flex; gap: 20px;">
+          <div>
+            <div style="font-size: 28px; font-weight: 700; color: var(--forest-green); font-family: var(--font-serif);">78,000+ ha</div>
+            <div style="font-size: 13px; color: var(--text-muted);">Coconut Cultivation Area</div>
+          </div>
+          <div>
+            <div style="font-size: 28px; font-weight: 700; color: var(--navy); font-family: var(--font-serif);">Brix ≥ 7.5%</div>
+            <div style="font-size: 13px; color: var(--text-muted);">Natural Sweetness</div>
+          </div>
+          <div>
+            <div style="font-size: 28px; font-weight: 700; color: var(--forest-green); font-family: var(--font-serif);">40+ Ports</div>
+            <div style="font-size: 13px; color: var(--text-muted);">Direct Global Shipping</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE PRODUCTS -->
+  <section class="products-section" id="featured-products">
+    <div class="container">
+      <div class="section-head-row">
+        <div>
+          <span class="section-label">Featured Products</span>
+          <h2 class="serif-heading" style="font-size: 38px;">
+            Signature Products from Vietnam
+          </h2>
+        </div>
+        <a href="#request-quote" class="btn btn-secondary">Request Full Catalog &rarr;</a>
+      </div>
+
+      <div class="products-grid" id="products-grid-container">
+        <!-- PRODUCT 1 -->
+        <div class="product-card">
+          <div class="product-thumb">🥥</div>
+          <div class="product-body">
+            <h3 class="product-title">Fresh Coconut</h3>
+            <p class="product-desc">Young Siamese drinking coconut, diamond cut or trimmed. Sweet and aromatic.</p>
+            <div class="product-meta-row">
+              <span style="font-size: 12px; color: var(--text-muted);">Brix 7.5 - 9.0%</span>
+              <button class="product-action-link" onclick="openSpecModal('fresh-coconut')">View details &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT 2 -->
+        <div class="product-card">
+          <div class="product-thumb">🥛</div>
+          <div class="product-body">
+            <h3 class="product-title">Coconut Water</h3>
+            <p class="product-desc">100% pure isotonic beverage. Available in aseptic Tetra Pak or UHT cans.</p>
+            <div class="product-meta-row">
+              <span style="font-size: 12px; color: var(--text-muted);">Aseptic Pack</span>
+              <button class="product-action-link" onclick="openSpecModal('coconut-water')">View details &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT 3 -->
+        <div class="product-card">
+          <div class="product-thumb">🥣</div>
+          <div class="product-body">
+            <h3 class="product-title">Coconut Milk & Cream</h3>
+            <p class="product-desc">Rich culinary coconut extract with fat contents 17% - 24%. Private label available.</p>
+            <div class="product-meta-row">
+              <span style="font-size: 12px; color: var(--text-muted);">Fat 17-24%</span>
+              <button class="product-action-link" onclick="openSpecModal('coconut-milk')">View details &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT 4 -->
+        <div class="product-card">
+          <div class="product-thumb">🫙</div>
+          <div class="product-body">
+            <h3 class="product-title">Virgin Coconut Oil (VCO)</h3>
+            <p class="product-desc">Cold-pressed unrefined coconut oil, rich in Lauric acid for cosmetic & food use.</p>
+            <div class="product-meta-row">
+              <span style="font-size: 12px; color: var(--text-muted);">Cold Pressed</span>
+              <button class="product-action-link" onclick="openSpecModal('coconut-oil')">View details &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT 5 -->
+        <div class="product-card">
+          <div class="product-thumb">🍚</div>
+          <div class="product-body">
+            <h3 class="product-title">Desiccated Coconut</h3>
+            <p class="product-desc">High fat fine & medium grade shredded dried coconut for global bakeries.</p>
+            <div class="product-meta-row">
+              <span style="font-size: 12px; color: var(--text-muted);">Fine / Medium</span>
+              <button class="product-action-link" onclick="openSpecModal('desiccated-coconut')">View details &rarr;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGING MODULE -->
+  <section class="packaging-section" id="packaging">
+    <div class="container">
+      <div style="text-align: center; max-width: 650px; margin: 0 auto 30px;">
+        <span class="section-label">Packaging Excellence</span>
+        <h2 class="serif-heading" style="font-size: 38px;">
+          Chuyên Đóng Gói Bao Bì Xuất Khẩu
+        </h2>
+        <p style="color: var(--text-body); margin-top: 10px;">
+          Chúng tôi chuẩn hóa quy cách đóng gói đạt tiêu chuẩn kiểm dịch và chuỗi lạnh quốc tế, bảo vệ hương vị tự nhiên từ nông trại đến cảng đích.
+        </p>
+      </div>
+
+      <div class="pack-grid">
+        <div class="pack-card">
+          <div style="font-size: 36px; margin-bottom: 14px;">📦</div>
+          <h4>Thùng Carton 5 - 7 Lớp Xuất Khẩu</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">
+            Carton chống ẩm chuyên dụng đi container lạnh. Quy cách 9 trái, 12 trái hoặc 24 trái với màng bọc POF màng co nhiệt bảo vệ cuống.
+          </p>
+        </div>
+
+        <div class="pack-card">
+          <div style="font-size: 36px; margin-bottom: 14px;">🏷️</div>
+          <h4>Gia Công Bao Bì Theo Yêu Cầu (OEM/ODM)</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">
+            In ấn thương hiệu riêng (Private Label), tem nhãn mã vạch, mã QR truy xuất nguồn gốc nông trại theo quy định nước nhập khẩu.
+          </p>
+        </div>
+
+        <div class="pack-card">
+          <div style="font-size: 36px; margin-bottom: 14px;">❄️</div>
+          <h4>Tiêu Chuẩn Chuỗi Lạnh 2°C - 4°C</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">
+            Sản phẩm được sơ chế, rửa ozon, khử khuẩn và bảo quản liên tục trong kho lạnh để duy trì độ tươi ngon từ 60 đến 75 ngày.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALITY & CERTIFICATIONS -->
+  <section class="quality-section" id="quality">
+    <div class="container">
+      <div style="text-align: center; max-width: 650px; margin: 0 auto;">
+        <span class="section-label">Quality Assurance</span>
+        <h2 class="serif-heading" style="font-size: 38px;">
+          Quy Trình Kiểm Soát Chất Lượng
+        </h2>
+      </div>
+
+      <div class="quality-timeline">
+        <div class="timeline-step">
+          <div class="step-num">Bước 01</div>
+          <div class="step-title">Thu hoạch chọn lọc</div>
+          <div class="step-desc">Độ tuổi dừa 7-8 tháng tuổi, đo Brix tại vườn.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">Bước 02</div>
+          <div class="step-title">Làm sạch & Gọt vỏ</div>
+          <div class="step-desc">Gọt kim cương (Diamond cut) hoặc gọt trọc theo yêu cầu.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">Bước 03</div>
+          <div class="step-title">Rửa Ozon & Khử trùng</div>
+          <div class="step-desc">Loại bỏ nấm mốc tự nhiên, an toàn vệ sinh thực phẩm.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">Bước 04</div>
+          <div class="step-title">Bọc màng co POF</div>
+          <div class="step-desc">Bọc màng giữ ẩm kèm nút mở dừa tiện lợi.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">Bước 05</div>
+          <div class="step-title">Đóng thùng & Đưa kho lạnh</div>
+          <div class="step-desc">Hạ nhiệt độ tâm quả xuống 2°C–4°C trước khi xếp cont.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUEST A QUOTE -->
+  <section class="quote-section" id="request-quote">
+    <div class="container quote-grid">
+      <div>
+        <span class="section-label" style="color: var(--sand);">B2B Sourcing Inquiry</span>
+        <h2 class="serif-heading" style="font-size: 38px; color: var(--white); margin-bottom: 20px;">
+          Kết Nối Trực Tiếp Với Đội Ngũ Xuất Khẩu
+        </h2>
+        <p style="font-size: 16px; opacity: 0.9; margin-bottom: 30px;">
+          Chúng tôi hỗ trợ người mua quốc tế, đại lý và nhà nhập khẩu từ việc chọn hàng, kiểm định chất lượng, đóng gói bao bì chuyên nghiệp đến làm thủ tục hải quan xuất khẩu.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 14px; font-size: 15px;">
+          <div>📧 <strong>Email hỗ trợ:</strong> info@vietnamagrohub.com</div>
+          <div>📱 <strong>Hotline/Zalo:</strong> +84 (0) 909 888 666</div>
+          <div>📍 <strong>Vùng nguyên liệu:</strong> Bến Tre & Đồng bằng sông Cửu Long</div>
+        </div>
+
+        <div style="margin-top: 30px; display: flex; gap: 14px;">
+          <a href="mailto:info@vietnamagrohub.com" class="btn" style="background: var(--sand); color: var(--navy); font-weight: 700;">Gửi thư qua Gmail</a>
+          <a href="https://facebook.com" target="_blank" class="btn" style="border: 1px solid rgba(255,255,255,0.4); color: #FFF;">Facebook Page</a>
+        </div>
+      </div>
+
+      <div class="quote-form-card">
+        <h3 style="font-family: var(--font-serif); font-size: 22px; color: var(--navy); margin-bottom: 20px;">
+          Nhận Báo Giá B2B (Request a Quote)
+        </h3>
+        <form onsubmit="handleQuoteSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Sản phẩm cần tìm:</label>
+            <select class="form-control" id="quote-product">
+              <option>Dừa xiêm tươi (Fresh Siamese Coconut)</option>
+              <option>Nước dừa đóng hộp (Coconut Water)</option>
+              <option>Nước cốt dừa (Coconut Milk / Cream)</option>
+              <option>Dầu dừa nguyên chất (Virgin Coconut Oil)</option>
+              <option>Cơm dừa sấy khô (Desiccated Coconut)</option>
+              <option>Nông sản nhiệt đới khác</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Số lượng dự kiến:</label>
+            <select class="form-control" id="quote-qty">
+              <option>1 x 20ft Reefer Container (~9,000 trái)</option>
+              <option>1 x 40ft Reefer Container (~20,000 trái)</option>
+              <option>Nhiều container định kỳ hàng tháng</option>
+              <option>Đơn hàng thử nghiệm (LCL / Hàng mẫu)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tên doanh nghiệp / Người liên hệ:</label>
+            <input type="text" class="form-control" placeholder="Tên công ty hoặc họ tên của bạn" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email hoặc Số điện thoại / WhatsApp:</label>
+            <input type="text" class="form-control" placeholder="Email hoặc số điện thoại liên lạc" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: 8px; margin-top: 10px;">
+            Gửi Yêu Cầu Báo Giá Ngay &rarr;
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div style="font-family: var(--font-serif); font-size: 22px; color: #FFF; font-weight: 700; margin-bottom: 12px;">
+          Vietnam AgroHub
+        </div>
+        <p style="font-size: 14px; line-height: 1.6; max-width: 340px;">
+          Chuyên đóng gói bao bì và xuất khẩu hàng hóa nông sản chất lượng cao từ Việt Nam đến các thị trường toàn cầu.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Sản phẩm</h4>
+        <ul class="footer-links">
+          <li><a href="#featured-products">Dừa Bến Tre</a></li>
+          <li><a href="#featured-products">Nước dừa tươi</a></li>
+          <li><a href="#featured-products">Cơm dừa sấy khô</a></li>
+          <li><a href="#featured-products">Dầu dừa nguyên chất</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Năng lực</h4>
+        <ul class="footer-links">
+          <li><a href="#packaging">Đóng gói bao bì</a></li>
+          <li><a href="#quality">Kiểm soát chất lượng</a></li>
+          <li><a href="#origins">Vùng trồng Mekong</a></li>
+          <li><a href="#request-quote">Báo giá B2B</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Kết nối</h4>
+        <p style="font-size: 13px; margin-bottom: 12px;">Hotline: +84 (0) 909 888 666</p>
+        <p style="font-size: 13px; margin-bottom: 12px;">Email: info@vietnamagrohub.com</p>
+        <p style="font-size: 13px;">Facebook: facebook.com/vietnamagrohub</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      &copy; 2026 Vietnam AgroHub. All Rights Reserved. Vietnamese Agriculture, Connected to the World.
+    </div>
+  </footer>
+
+  <!-- SPEC DRAWER MODAL -->
+  <div class="modal-backdrop" id="spec-modal" onclick="closeSpecModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeSpecModal()">&times;</button>
+      <div id="modal-content">
+        <!-- Dynamically injected -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const productData = {
+      'fresh-coconut': {
+        name: 'Fresh Siamese Drinking Coconut (Dừa Xiêm Bến Tre)',
+        brix: '7.5% - 9.5%',
+        weight: '800g - 1,200g (Diamond Cut) / 450g - 650g (Easy-Open Trimmed)',
+        packaging: 'Carton 9 or 12 pcs, POF shrink film with straw tab',
+        shelfLife: '60 - 75 days at 2°C - 4°C cold chain',
+        origin: 'Chau Thanh & Giong Trom, Ben Tre Province, Vietnam',
+        desc: 'Selected fresh coconuts harvested at 7.5 months. Known for crisp sweetness, refreshing aroma, and clear electrolyte-rich water.'
+      },
+      'coconut-water': {
+        name: '100% Pure Coconut Water (Nước Dừa Tươi Đóng Hộp)',
+        brix: '7.0% - 8.5%',
+        weight: '330ml / 500ml / 1,000ml Aseptic Tetra Pak or Can',
+        packaging: 'Carton box 12 or 24 packs',
+        shelfLife: '12 - 18 months at room temperature',
+        origin: 'Ben Tre Province, Vietnam',
+        desc: 'Direct-extracted and flash pasteurized via UHT technology within 24 hours of harvest to preserve 100% natural minerals and taste.'
+      },
+      'coconut-milk': {
+        name: 'Canned Coconut Milk & Culinary Cream',
+        brix: 'Culinary Fat: 17% - 19% or 22% - 24%',
+        weight: '400ml Tin Can / 20kg Bag-in-Box / 200L Drum',
+        packaging: 'Export Carton 24 Cans or Food-grade Drums',
+        shelfLife: '24 months',
+        origin: 'Mekong Delta, Vietnam',
+        desc: 'Thick, creamy emulsion of fresh mature coconut meat. Free of artificial colors or preservatives.'
+      },
+      'coconut-oil': {
+        name: 'Extra Virgin Coconut Oil (Cold Pressed VCO)',
+        brix: 'Moisture < 0.1%, Lauric Acid > 50%',
+        weight: '250ml, 500ml Glass Jar or 1,000L IBC Tote',
+        packaging: 'Cardboard carton with safety dividers',
+        shelfLife: '24 months',
+        origin: 'Ben Tre, Vietnam',
+        desc: 'Produced using cold centrifugal extraction without high heat or chemicals, preserving high lauric acid content and pleasant coconut fragrance.'
+      },
+      'desiccated-coconut': {
+        name: 'Desiccated Coconut (Cơm Dừa Sấy Khô)',
+        brix: 'Fat Content: High Fat (>65%) / Medium Fat',
+        weight: '25kg Kraft paper bags with inner PE liner',
+        packaging: 'Kraft multi-wall bag, palletized for 20ft/40ft container',
+        shelfLife: '12 months in cool dry storage',
+        origin: 'Ben Tre, Vietnam',
+        desc: 'Pure white shredded coconut meat, perfectly dried for industrial confectionery, bakeries, and food processing.'
+      }
+    };
+
+    function openSpecModal(productId) {
+      const item = productData[productId];
+      if (!item) return;
+      const content = document.getElementById('modal-content');
+      content.innerHTML = `
+        <div style="font-size: 13px; color: var(--forest-green); font-weight: 700; text-transform: uppercase;">Export Specification Sheet</div>
+        <h3 style="font-family: var(--font-serif); font-size: 24px; color: var(--navy); margin: 6px 0 16px;">${item.name}</h3>
+        <p style="font-size: 14px; color: var(--text-body); margin-bottom: 20px;">${item.desc}</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 24px;">
+          <tr style="border-bottom: 1px solid #ECE7DE;">
+            <td style="padding: 10px 0; font-weight: 600; color: var(--navy); width: 35%;">Độ ngọt (Brix):</td>
+            <td style="padding: 10px 0; color: var(--forest-green); font-weight: 600;">${item.brix}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ECE7DE;">
+            <td style="padding: 10px 0; font-weight: 600; color: var(--navy);">Quy cách trọng lượng:</td>
+            <td style="padding: 10px 0;">${item.weight}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ECE7DE;">
+            <td style="padding: 10px 0; font-weight: 600; color: var(--navy);">Đóng gói (Packaging):</td>
+            <td style="padding: 10px 0;">${item.packaging}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ECE7DE;">
+            <td style="padding: 10px 0; font-weight: 600; color: var(--navy);">Hạn sử dụng:</td>
+            <td style="padding: 10px 0;">${item.shelfLife}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; font-weight: 600; color: var(--navy);">Xuất xứ (Origin):</td>
+            <td style="padding: 10px 0;">${item.origin}</td>
+          </tr>
+        </table>
+
+        <div style="display: flex; gap: 12px;">
+          <a href="#request-quote" onclick="closeSpecModal()" class="btn btn-primary" style="flex: 1;">
+            Yêu Cầu Báo Giá Sản Phẩm Này &rarr;
+          </a>
+        </div>
+      `;
+      document.getElementById('spec-modal').style.display = 'flex';
+    }
+
+    function closeSpecModal() {
+      document.getElementById('spec-modal').style.display = 'none';
+    }
+
+    function handleQuoteSubmit(e) {
+      e.preventDefault();
+      alert('Cảm ơn quý khách! Yêu cầu báo giá của bạn đã được tiếp nhận. Đội ngũ Vietnam AgroHub sẽ liên hệ trong vòng 24 giờ.');
+    }
+
+    function filterCategory(catName) {
+      document.querySelectorAll('.cat-item').forEach(el => el.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+    }
+
+    function handleSearch(val) {
+      val = val.toLowerCase().trim();
+      if (!val) return;
+      if (val.includes('coconut') || val.includes('dừa')) {
+        location.href = '#featured-products';
+      }
+    }
+  </script>
+</body>
+</html>
